@@ -1,12 +1,24 @@
 import './index.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from '../public/pages/Home'
+import Location from '../public/pages/Location'
+import Event from '../public/pages/Event'
+import Header from '../public/components/header';
 
-function App() {
+const App = () => {
 
   return (
     <>
-      <div>
-        <h2>yo</h2>
-      </div>
+      <main>
+        <Router>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/locations/:locationId" element={<Location />} />
+            <Route path="/locations/:locationId/events/:eventId" element={<Event />} />
+          </Routes>
+        </Router>
+      </main>
     </>
   )
 }
