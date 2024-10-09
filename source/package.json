@@ -1,0 +1,22 @@
+{
+  "name": "Events Platform API",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "reset": "cd config && node --require dotenv/config initDB.js",
+    "start": "npm run reset && nodemon --require dotenv/config server.js"
+  },
+  "author": "Pablo Valdes",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "pg": "^8.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
