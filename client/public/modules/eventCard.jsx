@@ -1,7 +1,13 @@
 
-const EventCard = () => {
+const EventCard = ({ event }) => {
+
   return (
-    <div>EventCard</div>
+    <div className="bg-slate-600">
+      <h2>{event.name}</h2>
+      <p>{event.description}</p>
+      <p>{event.price}</p>
+      <p>{event.expired}</p>
+    </div>
   )
 }
 
