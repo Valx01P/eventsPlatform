@@ -4,11 +4,11 @@ const LocationInfoHero = ({ locationDetails }) => {
 
   return (
     <div className="bg-slate-400">
-      <h2>{locationDetails.name}</h2>
-      <p>{locationDetails.description}</p>
-      <p>{locationDetails.address}</p>
-      <p>{locationDetails.city}</p>
-      <p>{locationDetails.state}</p>
+      <h2>{locationDetails[0].name}</h2>
+      <p>{locationDetails[0].description}</p>
+      <p>{locationDetails[0].address}</p>
+      <p>{locationDetails[0].city}</p>
+      <p>{locationDetails[0].state}</p>
     </div>
   )
 }

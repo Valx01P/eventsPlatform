@@ -4,36 +4,44 @@ import { useParams } from 'react-router-dom';
 
 const Event = () => {
   const { eventId, locationId } = useParams()
-  const [eventDetails, setEventDetails] = useState({})
-  const [locationDetails, setLocationDetails] = useState({})
+  const [eventDetails, setEventDetails] = useState([])
+  const [locationDetails, setLocationDetails] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const fetchLocationDetails = async () => {
+    const fetchData = async () => {
+      setLoading(true)
       try {
-        const response = await fetch(`http://localhost:3000/locations/${locationId}`)
-        const data = await response.json()
-        setLocationDetails(data)
-        console.log(data)
+        const [locationResponse, eventResponse] = await Promise.all([
+          fetch(`http://localhost:3000/locations/${locationId}`),
+          fetch(`http://localhost:3000/locations/${locationId}/events/${eventId}`)
+        ])
+        
+        const locationData = await locationResponse.json()
+        const eventData = await eventResponse.json()
+        
+        setLocationDetails(locationData)
+        setEventDetails(eventData)
       } catch (error) {
-        console.error(error)
+        console.error('Error fetching data:', error)
+      } finally {
+        setLoading(false)
       }
     }
-    const fetchEventDetails = async () => {
-      try {
-        const response = await fetch(`http://localhost:3000/locations/${locationId}/events/${eventId}`)
-        const data = await response.json()
-        setEventDetails(data)
-        console.log(data)
-      } catch (error) {
-        console.error(error)
-      }
-    }
-    fetchLocationDetails()
-    fetchEventDetails()
+
+    fetchData()
   }, [eventId, locationId])
 
+  if (loading) {
+    return <div className="text-center mt-8">Loading...</div>
+  }
+
+  if (!eventDetails || !locationDetails) {
+    return <div className="text-center mt-8">Event or location details not found.</div>
+  }
+
   return (
-    <div>
+    <div className="container mx-auto px-4 py-8">
       <EventInfoHero eventDetails={eventDetails} locationDetails={locationDetails} />
     </div>
   )
