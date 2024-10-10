@@ -35,14 +35,15 @@ const Location = () => {
     fetchData()
   }, [locationId])
 
-  if (loading) {
-    return <div className="text-center mt-8">Loading...</div>
-  }
-
   return (
-    <div className="space-y-8">
-      {<LocationInfoHero locationDetails={locationDetails} />}
-      <EventList events={events} />
+    <div className="mt-18">
+      {
+        loading ? <div className="text-center mt-8">Loading...</div> :
+        <>
+          <LocationInfoHero locationDetails={locationDetails} />
+          <EventList events={events} locationId={locationId} />
+        </>
+      }
     </div>
   )
 }

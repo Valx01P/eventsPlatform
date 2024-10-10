@@ -1,4 +1,5 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import '../../src/index.css'
 
 const Header = () => {
   const navigate = useNavigate();
@@ -18,11 +19,11 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-50 p-4">
+    <header className="fixed top-0 left-0 right-0 z-50 p-4 h-10 w-full">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="text-xl font-bold">
           {/* Replace with your actual logo */}
-          🏙️ CityEvents
+          🏙️ SouthFloridaEvents
         </Link>
         <button
           onClick={handleNavigation}

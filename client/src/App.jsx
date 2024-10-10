@@ -1,4 +1,3 @@
-import './index.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from '../public/pages/Home'
 import Location from '../public/pages/Location'
@@ -9,7 +8,7 @@ const App = () => {
 
   return (
     <>
-      <main>
+      <main className='w-auto h-auto bg-gray-800 m-8'>
         <Router>
           <Header />
           <Routes>
